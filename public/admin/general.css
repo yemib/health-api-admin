@@ -1,0 +1,249 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+
+@font-face{
+	
+	font-family:FjallaOne;
+	src: url('../fonts/FjallaOne-Regular.ttf');
+	
+}
+
+@font-face{
+	
+	font-family:Anton;
+	src: url('../fonts/Anton-Regular.ttf');
+	
+}
+
+@font-face{
+	
+	font-family:Cinzel-Regular;
+	src: url('../fonts/Cinzel-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:Domine-Regular;
+	src: url('../fonts/Domine-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family: EncodeSansSemiCondensed-Regular;
+	src: url('../fonts/EncodeSansSemiCondensed-Regular.ttf');
+	
+}
+
+@font-face{
+	
+	font-family: EncodeSansSemiCondensed-black;
+	src: url('../fonts/encoded/EncodeSansSemiCondensed-Black.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:FiraSans-Regular;
+	src: url('../fonts/FiraSans-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:FjallaOne-Regular;
+	src: url('../fonts/FjallaOne-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:IrishGrover-Regular ;
+	src: url('../fonts/IrishGrover-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family: JosefinSlab-Regular;
+	src: url('../fonts/JosefinSlab-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family: Lancelot-Regular;
+	src: url('../fonts/Lancelot-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:LateefRegOT;
+	src: url('../fonts/LateefRegOT.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:OldStandard-Regular;
+	src: url('../fonts/OldStandard-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:Lobster-Regular;
+	src: url('../fonts/Lobster-Regular.ttf');
+	
+}
+
+@font-face{
+	
+	font-family:Oswald-Regular;
+	src: url('../fonts/Oswald-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:PathwayGothicOne-Regular;
+	src: url('../fonts/PathwayGothicOne-Regular.ttf');
+	
+}
+
+
+
+
+
+@font-face{
+	
+	font-family:Playball-Regular;
+	src: url('../fonts/Playball-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:PT_Sans-Narrow-Web-Regular;
+	src: url('../fonts/PT_Sans-Narrow-Web-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:Rancho-Regular;
+	src: url('../fonts/Rancho-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:Sancreek-Regular;
+	src: url('../fonts/Sancreek-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:Smythe-Regular;
+	src: url('../fonts/Smythe-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:Sunshiney-Regular;
+	src: url('../fonts/Sunshiney-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:SpectralSC-Regular;
+	src: url('../fonts/SpectralSC-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:Teko-Regular;
+	src: url('../fonts/Teko-Regular.ttf');
+	
+}
+
+
+@font-face{
+	
+	font-family:Tillana-Regular;
+	src: url('../fonts/Tillana-Regular.ttf');
+	
+}
+
+
+
+
+
+
+
+#preview{
+	
+	
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: left
+	
+}
+
+
+.form_container{
+	
+	display: none;
+}
+
+.desktop{
+	
+	display: none
+}
+@media only screen and (min-width: 481px) {
+	
+	
+	
+	
+}
+
+
+@media only screen and (min-width: 769px) {
+	
+	.form_container{
+	
+	display: block;
+}
+
+	.tall_height{
+		 height: 1080px
+	}
+	
+}
