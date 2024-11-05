@@ -15,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('blogs/{pages?}', [ApiController::class  ,  'blog']);
+Route::get('testimonies/{pages?}', [ApiController::class  ,  'testimonies']);
+Route::get('allpages/{pages?}', [ApiController::class  ,  'allpages']);
+Route::get('page/{id}', [ApiController::class  ,  'page']);
+Route::get('managements/{pages?}', [ApiController::class  ,  'managements']);
+Route::get('gallery/{pages?}', [ApiController::class  ,  'gallery']);
 
-Route::get('blogs', [ApiController::class  ,  'blog']);
+Route::get('slides/{pages?}', [ApiController::class  ,  'slides']);
+Route::get('logo', [ApiController::class  ,  'logo']);
+Route::get('contact', [ApiController::class  ,  'contact']);
