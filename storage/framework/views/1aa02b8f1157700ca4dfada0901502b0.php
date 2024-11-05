@@ -1,6 +1,5 @@
-
-         @extends('admin_folder/index')
-@section('content')
+         
+<?php $__env->startSection('content'); ?>
 
          <?php
 use App\page;
@@ -45,11 +44,11 @@ $page = page::get();
 
                       <?php   foreach( $page as $pages){   ?>
 
-                      <tr  id="each{{$pages->id}}">
-                        <td> {{ $pages->title }}</td>
+                      <tr  id="each<?php echo e($pages->id); ?>">
+                        <td> <?php echo e($pages->title); ?></td>
 
 
-                        <td style="">  <a  target="new"  href="/page/{{ $pages->id }}/{{ $pages->title }}" class="btn btn-default">   View </a>   </td>
+                        <td style="">  <a  target="new"  href="/page/<?php echo e($pages->id); ?>/<?php echo e($pages->title); ?>" class="btn btn-default">   View </a>   </td>
 
 
                         <td>
@@ -63,20 +62,21 @@ $page = page::get();
                         </td>
 
 
-                        <td><a class="btn btn-default" href="pages/{{  $pages->id }}/edit">Edit</a>  </td>
+                        <td><a class="btn btn-default" href="pages/<?php echo e($pages->id); ?>/edit">Edit</a>  </td>
 
                         <td>
                          
-                        <form  id="form_id{{$pages->id}}"  onSubmit="send_landing_page(event,'pages/{{ $pages->id }}', 'form_id{{$pages->id}}','each{{$pages->id}}','loadingt{{ $pages->id }}')"  method="post"  action="pages/{{ $pages->id }}"   style="display: inline">
+                        <form  id="form_id<?php echo e($pages->id); ?>"  onSubmit="send_landing_page(event,'pages/<?php echo e($pages->id); ?>', 'form_id<?php echo e($pages->id); ?>','each<?php echo e($pages->id); ?>','loadingt<?php echo e($pages->id); ?>')"  method="post"  action="pages/<?php echo e($pages->id); ?>"   style="display: inline">
 
-                          {{ csrf_field() }}
+                          <?php echo e(csrf_field()); ?>
+
 
 
           <input    name="_method"    value="delete"   type="hidden" />
 
 
 
-                          <input  id="loadingt{{ $pages->id }}"  type="submit"   class="btn btn-danger"  value="Delete"   />
+                          <input  id="loadingt<?php echo e($pages->id); ?>"  type="submit"   class="btn btn-danger"  value="Delete"   />
 
 
 
@@ -89,7 +89,7 @@ $page = page::get();
 
                           
                           </td>
-                          <td> {{ $pages->id }}   </td>
+                          <td> <?php echo e($pages->id); ?>   </td>
                       </tr>
 
                     <?php    } ?>
@@ -101,10 +101,12 @@ $page = page::get();
           </div>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
 
 
 
+
+<?php echo $__env->make('admin_folder/index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\website\health\health-api-admin\resources\views/admin_folder/pages.blade.php ENDPATH**/ ?>

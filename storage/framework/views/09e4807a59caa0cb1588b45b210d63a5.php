@@ -1,5 +1,5 @@
- @extends('admin_folder/index')
-         @section('content')
+ 
+         <?php $__env->startSection('content'); ?>
 
          <?php
 use App\servicess;
@@ -25,13 +25,14 @@ if(isset($edit)){
 
 
 
-                <form    method="post" action="@if(isset($service)) /newsletters/{{ $service->id }}  @else /newsletters @endif"  enctype="multipart/form-data"   >
+                <form    method="post" action="<?php if(isset($service)): ?> /newsletters/<?php echo e($service->id); ?>  <?php else: ?> /newsletters <?php endif; ?>"  enctype="multipart/form-data"   >
 
-                  {{ csrf_field() }}
+                  <?php echo e(csrf_field()); ?>
+
 
                   <div class="form-group">
                     <label>Title</label>
-                    <input  required type="text" class="form-control" placeholder="Title" value="@if(isset($service)) {{$service->title}} @endif"   name="title" >
+                    <input  required type="text" class="form-control" placeholder="Title" value="<?php if(isset($service)): ?> <?php echo e($service->title); ?> <?php endif; ?>"   name="title" >
                   </div>
 
 
@@ -39,7 +40,7 @@ if(isset($edit)){
                     <label>Body</label>
                     <br/>
 
-                      @include('admin_folder/tools')
+                      <?php echo $__env->make('admin_folder/tools', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 
                    <br/>
@@ -48,7 +49,7 @@ if(isset($edit)){
                       <div  id="progress_id"> </div>
 
 
-                    <div   style="height: 300px ; overflow: auto;position: relative"  onDblClick="$('.tool_container').hide(500)"   onClick="$('.tool_container').show(500)" id="el"  contenteditable="true"     class="form-control  preview"> @if(isset($service)) {!! $service->body !!} @endif </div>
+                    <div   style="height: 300px ; overflow: auto;position: relative"  onDblClick="$('.tool_container').hide(500)"   onClick="$('.tool_container').show(500)" id="el"  contenteditable="true"     class="form-control  preview"> <?php if(isset($service)): ?> <?php echo $service->body; ?> <?php endif; ?> </div>
 
 
 
@@ -61,7 +62,7 @@ if(isset($edit)){
 
                   <div class="form-group">
 
-                   <div   id="preview" @if(isset($service)) style="background-image: url({{ $service->image }}); height: 200px"  @endif >       </div>
+                   <div   id="preview" <?php if(isset($service)): ?> style="background-image: url(<?php echo e($service->image); ?>); height: 200px"  <?php endif; ?> >       </div>
 
 
                    <input  id="pre_input"     type="hidden"   name="image"    />
@@ -77,7 +78,7 @@ if(isset($edit)){
 
                     <label>
 
-                      <input  name="publish"   value="yes"  @if($service->publish  =='yes')  checked @endif  type="checkbox"> Published
+                      <input  name="publish"   value="yes"  <?php if($service->publish  =='yes'): ?>  checked <?php endif; ?>  type="checkbox"> Published
                     </label>
 
 
@@ -117,7 +118,8 @@ if(isset($edit)){
 
                 </form>
                     <form  id="form_id"   enctype="multipart/form-data">
-                      {{ csrf_field() }}
+                      <?php echo e(csrf_field()); ?>
+
 
                    <input     name="others"    type="file"   style="display: none"    id="file-article"    class="file-article" >
 
@@ -126,5 +128,7 @@ if(isset($edit)){
               </div>
 
           </div>
-       @endsection
+       <?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('admin_folder/index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\website\health\health-api-admin\resources\views/admin_folder/add_services.blade.php ENDPATH**/ ?>

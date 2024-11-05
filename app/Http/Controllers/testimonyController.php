@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\servicess;
+use App\testimony;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class testimony extends Controller
+
+
+
+class testimonyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
 
     public function __construct()
     {
@@ -25,8 +29,10 @@ class testimony extends Controller
     public function index()
     {
         // main display  
-
-        return view('admin_folder/services');
+            
+        $service = testimony::orderby('created_at'  , 'desc')->paginate(100);
+        $all = ['service'=> $service   ,  'title' =>  'Testimony' ];
+        return view('admin_folder/testimonies')->with($all);
     }
 
     /**
@@ -37,7 +43,7 @@ class testimony extends Controller
     public function create()
     {
         //
-        return view('admin_folder/add_services');
+        return view('admin_folder/add_testimony')->with('title',  'Testimony');
     }
 
     /**
@@ -52,9 +58,10 @@ class testimony extends Controller
 
 
 
-        $service  = new servicess();
+        $service  = new testimony();
         $service->title  = $request->title;
         $service->body  = $request->body;
+        
         $service->publish  = (isset($request->publish)) ?  $request->publish  :  'no';
 
         if ($request->image  != '') {
@@ -81,7 +88,7 @@ class testimony extends Controller
       
         //update  the  api  key
 
-        return  redirect('/newsletters');
+        return  redirect('/testimony');
     }
 
     /**
@@ -104,9 +111,10 @@ class testimony extends Controller
     public function edit($id)
     {
         //
-        $all = array('edit' => 'edit', 'id' => $id);
+        $service =  testimony::find($id);
+        $all = array('edit' => 'edit', 'id' => $id ,  'type'=>'testimony'   , 'service'=>$service);
 
-        return view('admin_folder/add_services')->with($all);
+        return view('admin_folder/add_testimony')->with($all);
     }
 
     /**
@@ -120,7 +128,7 @@ class testimony extends Controller
     {
         //
 
-        $service  = servicess::find($id);
+        $service  = testimony::find($id);
         $service->title  = $request->title;
         $service->body  = $request->body;
         $service->publish  = (isset($request->publish)) ?  $request->publish  :  'no';
@@ -143,7 +151,7 @@ class testimony extends Controller
 
    
     
-        return  redirect('/newsletters');
+        return  redirect('/testimony');
     }
 
     /**
@@ -155,9 +163,9 @@ class testimony extends Controller
     public function destroy($id)
     {
         //
-        $service  = servicess::find($id);
+        $service  = testimony::find($id);
         $service->delete();
 
-        return   redirect('/newsletters');
+        return   redirect('/testimony');
     }
 }

@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Area | Dashboard</title>
     <!-- Bootstrap core CSS -->
-    <link href="{{asset('admin/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('admin/style.css')}}" rel="stylesheet">
-    <link href="{{asset('admin/general.css')}}" rel="stylesheet">
+    <link href="<?php echo e(asset('admin/bootstrap.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('admin/style.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('admin/general.css')); ?>" rel="stylesheet">
  
 
   </head>
@@ -44,7 +44,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
            
-            {{-- <li><a  target="new" href="/">View the site</a></li> --}}
+            
             <li><a href="/logout">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -147,7 +147,7 @@
           
           
           
-         @yield('content')
+         <?php echo $__env->yieldContent('content'); ?>
           
           
         </div>
@@ -155,7 +155,7 @@
     </section>
 
     <footer id="footer">
-      <p>{{-- Copyright , &copy;  --}} {{--  {{  date('Y') }} --}}</p>
+      <p> </p>
     </footer>
 
     <!-- Modals -->
@@ -170,8 +170,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{asset('admin/jquery.min.js')}}"></script>
-  @include('script')
-    <script src="{{asset('admin/bootstrap.min.js')}}"></script>
+    <script src="<?php echo e(asset('admin/jquery.min.js')); ?>"></script>
+  <?php echo $__env->make('script', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <script src="<?php echo e(asset('admin/bootstrap.min.js')); ?>"></script>
   </body>
 </html>
+<?php /**PATH C:\website\health\health-api-admin\resources\views/admin_folder/index.blade.php ENDPATH**/ ?>

@@ -13,9 +13,12 @@
 
 use Illuminate\Http\Request;
 use App\admins;
+use App\Http\Controllers\databaseController;
 use Illuminate\Support\Facades\Route;
 
 
+
+Route::get('database' ,  [databaseController::class  ,  'index']);
 
 Route::get('/',  function () {
 	return   redirect('admins');     /*  view('home2') */;
@@ -63,7 +66,7 @@ Route::get('/admins',  function () {
 
 
 Route::resources([
-	'testimony' => 'testimony',
+	'testimony' => 'testimonyController',
 	'newsletters' => 'service',
 	'post' => 'post',
 	'pages' => 'pages',

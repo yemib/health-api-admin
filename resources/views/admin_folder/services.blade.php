@@ -2,19 +2,13 @@
          @extends('admin_folder/index')
 @section('content')
 
-         <?php
-use App\servicess;
 
-
-$service = servicess::orderby('created_at'  , 'desc')->paginate(100);
-
-?>
 
           <div class="col-md-9">
             <!-- Website Overview -->
             <div class="panel panel-default">
               <div class="panel-heading main-color-bg">
-                <h3 class="panel-title">Blog</h3>
+                <h3 class="panel-title"> @if(isset($title))  {{ $title }} @else  Blog @endif</h3>
               </div>
               <div class="panel-body">
                 <div class="row">
@@ -22,7 +16,7 @@ $service = servicess::orderby('created_at'  , 'desc')->paginate(100);
 
 
 
-                         <a  href="/newsletters/create"   class="btn btn-primary"  >  Add Blog  </a>
+                         <a  href="/newsletters/create"   class="btn btn-primary"  >  Add @if(isset($title))  {{ $title }} @else  Blog @endif  </a>
 
                       </div>
                 </div>

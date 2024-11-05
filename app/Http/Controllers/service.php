@@ -31,8 +31,9 @@ class service extends Controller
     public function index()
     {
         // main display  
-
-        return view('admin_folder/services');
+        $service = servicess::orderby('created_at'  , 'desc')->paginate(100);
+        $all = ['service'=> $service   ,  'title' =>  'Testimony' ];
+        return view('admin_folder/services')->with($all);
     }
 
     /**
@@ -110,7 +111,9 @@ class service extends Controller
     public function edit($id)
     {
         //
-        $all = array('edit' => 'edit', 'id' => $id);
+        $service =  servicess::find($id);
+        $all = array('edit' => 'edit', 'id' => $id ,  'type'=>'testimony'   , 'service'=>$service);
+       
 
         return view('admin_folder/add_services')->with($all);
     }
