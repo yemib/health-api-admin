@@ -57,10 +57,10 @@ if(isset($edit)){
 					inputv("Pinterest" , 'pinterest'   , $eachs->pinterest) ;
 					inputv("Youtube" , 'youtube'  , $eachs->youtube) ;
 					inputv("Linkedin" , 'linkedin'  , $eachs->linkedin) ;
-					inputv("Paystack Link" , 'instagram'  , $eachs->instagram) ;
+					
 					inputv("Address" , 'address'  , $eachs->address) ;
 					inputv("Email" , 'email'  , $eachs->email) ;
-					inputv("FaceBook Api Key" , 'facebookapi'  , $eachs->facebookapi) ;
+					
 
 
 

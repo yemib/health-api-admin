@@ -25,3 +25,4 @@ Route::get('gallery/{pages?}', [ApiController::class  ,  'gallery']);
 Route::get('slides/{pages?}', [ApiController::class  ,  'slides']);
 Route::get('logo', [ApiController::class  ,  'logo']);
 Route::get('contact', [ApiController::class  ,  'contact']);
+Route::any('send_mail'   , [ApiController::class  ,  'sendmail'] );

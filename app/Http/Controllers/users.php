@@ -120,9 +120,14 @@ class users extends Controller
      */
     public function destroy($id)
     {
-        //
-		$service  = admins::find($id);
-		$service->delete();
+        //do nor allow delete of owner  
+        $service  = admins::find($id);
+         if(session('admin')  !=  $service->username  ){
+            $service->delete();
+
+         }
+		
+	
 		
 		return   redirect('/users');
 		

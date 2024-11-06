@@ -16,33 +16,19 @@ class contact extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-		 public function __construct()
+    public function __construct()
     {
-    try{
-
-     if( !Schema::hasColumn('contact_details'  ,  'facebookapi')) {
-             //run a script perfectly here  okay 
-             DB::statement('ALTER TABLE  contact_details ADD COLUMN facebookapi TEXT');
-     } 
-   
-
-
-    }catch(Exception $e){
-
-    }
+       
 
         $this->middleware('article');
-
-       
     }
-	
-	
+
+
     public function index()
     {
         //
-		
-		return  view('admin_folder/contact');
-		
+
+        return  view('admin_folder/contact');
     }
 
     /**
@@ -64,27 +50,25 @@ class contact extends Controller
     public function store(Request $request)
     {
         // this only exist if is empty  
-		
-	$contact  =   new contact_detail();
-		
-		
-$contact->facebook = $request->facebook ; 
-$contact->twitter = $request->twitter ; 
-$contact->google = $request->google ; 
-$contact->pinterest = $request->pinterest ; 
-$contact->youtube = $request->youtube ; 
-$contact->linkedin = $request->linkedin ; 
-$contact->instagram = $request->instagram ; 
-$contact->phone1 = $request->phone1 ; 
-$contact->phone2 = $request->phone2 ; 
-$contact->facebookapi  =  $request->facebookapi  ;
-$contact->save();
-		
-		
-		
-return  redirect('/contact');		
-		
-		
+
+        $contact  =   new contact_detail();
+
+
+        $contact->facebook = $request->facebook;
+        $contact->twitter = $request->twitter;
+        $contact->google = $request->google;
+        $contact->pinterest = $request->pinterest;
+        $contact->youtube = $request->youtube;
+        $contact->linkedin = $request->linkedin;
+        $contact->instagram = $request->instagram;
+        $contact->phone1 = $request->phone1;
+        $contact->phone2 = $request->phone2;
+        $contact->facebookapi  =  $request->facebookapi;
+        $contact->save();
+
+
+
+        return  redirect('/contact');
     }
 
     /**
@@ -119,32 +103,32 @@ return  redirect('/contact');
     public function update(Request $request, $id)
     {
         //
-		
-		$contact  = contact_detail::find($id);
-		
-		
-$contact->facebook = ($request->facebook != '')? $request->facebook :  ' ' ; 
-$contact->twitter = ($request->twitter != '')? $request->twitter  : ' '   ; 
-$contact->google = ($request->google   != '')? $request->google :' '   ; 
-$contact->pinterest = ($request->pinterest  != '')? $request->pinterest : ' '  ; 
-$contact->youtube = ($request->youtube != '')?  $request->youtube : ' '   ; 
-$contact->linkedin = ($request->linkedin != '')?  $request->linkedin  : ' '; 
-$contact->instagram = ( $request->instagram != '')?  $request->instagram   : ' '  ; 
-$contact->phone1 =(  $request->phone1 != '')?  $request->phone1  : ' '; 
-$contact->phone2 =(  $request->phone2 != '')?  $request->phone2  :  ' '  ; 
-$contact->address =(  $request->address != '')?  $request->address  :  ' '  ; 
-$contact->email =(  $request->email != '')?  $request->email  :  ' '  ; 
-$contact->facebookapi =(  $request->facebookapi != '')?  $request->facebookapi  :  ' '  ; 
-$contact->save();
-		
-		?>
-		<script>  alert('update'); </script>
-		<?php
-		
-		
-	return  view('admin_folder/contact');
-		
-		
+
+        $contact  = contact_detail::find($id);
+
+
+        $contact->facebook = ($request->facebook != '') ? $request->facebook :  ' ';
+        $contact->twitter = ($request->twitter != '') ? $request->twitter  : ' ';
+        $contact->google = ($request->google   != '') ? $request->google : ' ';
+        $contact->pinterest = ($request->pinterest  != '') ? $request->pinterest : ' ';
+        $contact->youtube = ($request->youtube != '') ?  $request->youtube : ' ';
+        $contact->linkedin = ($request->linkedin != '') ?  $request->linkedin  : ' ';
+        $contact->instagram = ($request->instagram != '') ?  $request->instagram   : ' ';
+        $contact->phone1 = ($request->phone1 != '') ?  $request->phone1  : ' ';
+        $contact->phone2 = ($request->phone2 != '') ?  $request->phone2  :  ' ';
+        $contact->address = ($request->address != '') ?  $request->address  :  ' ';
+        $contact->email = ($request->email != '') ?  $request->email  :  ' ';
+
+        $contact->save();
+
+?>
+        <script>
+            alert('updated');
+        </script>
+<?php
+
+
+        return  view('admin_folder/contact');
     }
 
     /**

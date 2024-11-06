@@ -13,6 +13,7 @@
 
 use Illuminate\Http\Request;
 use App\admins;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\databaseController;
 use Illuminate\Support\Facades\Route;
 

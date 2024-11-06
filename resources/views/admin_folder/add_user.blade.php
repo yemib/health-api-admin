@@ -28,7 +28,7 @@ if(isset($edit)){
 
                   <div class="form-group">
                     <label>Username</label>
-                    <input   type="text" class="form-control" placeholder="Username" value="@if(isset($users)) {{$users->username}} @endif"   name="username" >
+                    <input   type="text" class="form-control" placeholder="Username" value="@if(isset($users)){{$users->username}}@endif"   name="username" >
                   </div>
                   <div class="form-group">
 
@@ -36,8 +36,8 @@ if(isset($edit)){
                     <label>Password</label>
 
 
-		 <input   type="text" class="form-control" placeholder="Password" value="@if(isset($users)) {{$users->password}} @endif"   name="password" >
-
+		 <input   type="password" class="form-control" placeholder="Password" value="@if(isset($users)){{$users->password}}@endif"   name="password" >
+       <br/>
 
 
                        <?php  if(isset($users)) { ?>

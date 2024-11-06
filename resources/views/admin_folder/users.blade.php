@@ -32,7 +32,7 @@ $users = admins::get();
                       <tr>
 
                         <th>Username</th>
-                        <th>Password</th>
+                        {{-- <th>Password</th> --}}
 
                         <th></th>
                         <th></th>
@@ -47,7 +47,7 @@ $users = admins::get();
 
 
                         <td> {{$users->username }} </td>
-                        <td>{{ $users->password }}  </td>
+                       {{--  <td>{{ $users->password }}  </td> --}}
 
 
                         <td><a class="btn btn-default" href="users/{{  $users->id }}/edit">Edit</a>  </td>
