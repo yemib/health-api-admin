@@ -173,6 +173,31 @@
     <script src="<?php echo e(asset('admin/jquery.min.js')); ?>"></script>
   <?php echo $__env->make('script', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <script src="<?php echo e(asset('admin/bootstrap.min.js')); ?>"></script>
+
+    <style>
+      .preview{
+        position: relative  !important;
+        
+      }
+      .editable_object{
+        position: absolute;
+        width: 60%; /* initial size */
+        height: auto;
+        cursor: move;
+       
+      }
+
+      .resize-handle {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background-color: #000;
+          bottom: 0;
+          right: 0;
+          cursor: nwse-resize;
+       }
+
+    </style>
   </body>
 </html>
 <?php /**PATH C:\website\health\health-api-admin\resources\views/admin_folder/index.blade.php ENDPATH**/ ?>

@@ -8,7 +8,7 @@
             <!-- Website Overview -->
             <div class="panel panel-default">
               <div class="panel-heading main-color-bg">
-                <h3 class="panel-title"> @if(isset($title))  {{ $title }} @else  Blog @endif</h3>
+                <h3 class="panel-title">  Blog </h3>
               </div>
               <div class="panel-body">
                 <div class="row">
@@ -16,7 +16,7 @@
 
 
 
-                         <a  href="/newsletters/create"   class="btn btn-primary"  >  Add @if(isset($title))  {{ $title }} @else  Blog @endif  </a>
+                         <a  href="/newsletters/create"   class="btn btn-primary"  > Add Blog  </a>
 
                       </div>
                 </div>

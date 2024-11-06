@@ -226,12 +226,12 @@ $('#file-input').on("change", previewImages);
 	
 	if (/\.(jpe?g|png|gif|ico|jpeg)$/i.test(file.name)){
 		
-image_source  = '<img   style=""  src="'+this.result+'" /> '
+image_source  = '<img  class="editable_object"    src="'+this.result+'" /> '
 	}else{
 		
 
 		if( /\.(|mp3|MP4|mp4)$/i.test(file.name)  &&  file.size  <=   1000  ){  
-		image_source  = '<video  width="200"  height="200"   controls    src="'+this.result+'"/>';
+		image_source  = '<video  class="editable_object"   width="200"  height="200"   controls    src="'+this.result+'"/>';
 		
 			}else{
 				
@@ -502,6 +502,69 @@ function toggle_password() {
 	}
 	
 	
+// Select the preview container
+const previewContainer = document.querySelector(".preview");
+
+// Function to add resize handle to an image
+function addResizeHandle(object) {
+    const resizeHandle = document.createElement("div");
+    resizeHandle.classList.add("resize-handle");
+    object.appendChild(resizeHandle);
+}
+
+// Set up a MutationObserver to watch for new images added to .preview
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+            if (node.classList && node.classList.contains("editable-object")) {
+                addResizeHandle(node);
+            }
+        });
+    });
+});
+
+// Start observing the preview container for child nodes being added
+observer.observe(previewContainer, { childList: true });
+
+// Drag and Resize Functionality
+let currentObject = null;
+let isDragging = false;
+let isResizing = false;
+let startX, startY, startWidth, startHeight;
+
+document.addEventListener("mousedown", (e) => {
+    if (e.target.classList.contains("editable-object")) {
+        currentObject = e.target;
+        isDragging = true;
+        startX = e.clientX - currentObject.offsetLeft;
+        startY = e.clientY - currentObject.offsetTop;
+    } else if (e.target.classList.contains("resize-handle")) {
+        currentObject = e.target.parentNode;
+        isResizing = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        startWidth = currentObject.offsetWidth;
+        startHeight = currentObject.offsetHeight;
+    }
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (isDragging && currentObject) {
+        currentObject.style.left = `${e.clientX - startX}px`;
+        currentObject.style.top = `${e.clientY - startY}px`;
+    } else if (isResizing && currentObject) {
+        currentObject.style.width = `${startWidth + (e.clientX - startX)}px`;
+        currentObject.style.height = `${startHeight + (e.clientY - startY)}px`;
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    isDragging = false;
+    isResizing = false;
+    currentObject = null;
+});
+
+
 	
 </script>
 
