@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'First' => \App\Http\Middleware\FirstMiddleware::class,
         'Second' => \App\Http\Middleware\SecondMiddleware::class,
         'article' => \App\Http\Middleware\article::class,
+        'cors' =>   \App\Http\Middleware\cor::class, 
         //First Second
 
     ];
