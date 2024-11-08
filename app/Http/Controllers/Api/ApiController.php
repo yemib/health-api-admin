@@ -44,6 +44,23 @@ class ApiController extends Controller
         }
     }
 
+    public function singleblog($id){
+
+        try{ 
+        $service = servicess::find($id);
+    
+        if(isset($service->id)){
+            return response()->json( $service);
+
+        }    
+        return response()->json([ 'message'=>"blog can't be found"]);
+        
+
+        }catch(\Exception   $e){
+            return response()->json([ 'message'=>$e->getMessage()]);
+        }
+    }
+
 
     
     public function testimonies($pages =  null){
@@ -225,6 +242,15 @@ class ApiController extends Controller
         if(isset($request->message)){
             $data['message'] =  $request->message ;  
         }
+
+        if(isset($request->date1)){
+            $data['date1'] =  $request->date1 ;  
+        }
+        if(isset($request->date2)){
+            $data['date2'] =  $request->date2 ;  
+        }
+        
+
 
         $data['subject'] =  "Appointment";
 
