@@ -16,8 +16,17 @@ class cor
     public function handle(Request $request, Closure $next): Response
     {
          // In Laravel middleware or in the main API route file
-       
-
-        return $next($request);
+         $response = $next($request);
+         // Set CORS headers
+         $response->headers->set('Access-Control-Allow-Origin', 'https://tinkahealthservices.com');
+         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+ 
+         // Allow preflight requests (OPTIONS) for CORS
+         if ($request->isMethod('OPTIONS')) {
+             $response->setStatusCode(200);
+         }
+ 
+         return $response;
     }
 }
