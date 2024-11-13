@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\servicess;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class service extends Controller
 {
@@ -41,10 +42,30 @@ class service extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+  
+
+
     public function create()
     {
         //
         return view('admin_folder/add_services');
+    }
+
+    public function setSlugAttribute($value)
+    {
+        if (!empty($value)) {
+            $temp_slug = Str::slug($value, '-');
+            if (!servicess::all()->where('slug', $temp_slug)->isEmpty()) {
+                $i = 1;
+                $new_slug = $temp_slug . '-' . $i;
+                while (!servicess::all()->where('slug', $new_slug)->isEmpty()) {
+                    $i++;
+                    $new_slug = $temp_slug . '-' . $i;
+                }
+                $temp_slug = $new_slug;
+            }
+            return  $temp_slug;
+        }
     }
 
     /**
@@ -62,6 +83,7 @@ class service extends Controller
         $service  = new servicess();
         $service->title  = $request->title;
         $service->body  = $request->body;
+        $service->slug =  $this->setSlugAttribute($request->title) ;
         $service->publish  = (isset($request->publish)) ?  $request->publish  :  'no';
 
         if ($request->image  != '') {

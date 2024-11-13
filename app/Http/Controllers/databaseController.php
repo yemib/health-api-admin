@@ -21,6 +21,14 @@ class databaseController extends Controller
            
         }
 
+        if (!Schema::hasColumn('servicesses', 'slug')) {  // Check if the column does not already exist
+            Schema::table('servicesses', function (Blueprint $table) {
+                $table->text('slug')->nullable(); // Add the new column
+            });
+           
+        }
+
+
 
         if (!Schema::hasTable('testimonies')) {
             Schema::create('testimonies', function (Blueprint $table) {

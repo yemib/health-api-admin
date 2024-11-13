@@ -44,10 +44,10 @@ class ApiController extends Controller
         }
     }
 
-    public function singleblog($id){
+    public function singleblog($slug){
 
         try{ 
-        $service = servicess::find($id);
+        $service = servicess::where('slug' ,$slug )->first();
     
         if(isset($service->id)){
             return response()->json( $service);
