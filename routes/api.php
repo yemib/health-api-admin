@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['cors'])->group(function () {
 
 Route::get('blogs/{pages?}', [ApiController::class  ,  'blog']);
-Route::get('blog/{slug}', [ApiController::class  ,  'singleblog']);
+Route::get('blog/{id}', [ApiController::class  ,  'singleblogid']);
+Route::get('blogslug/{slug}', [ApiController::class  ,  'singleblog']);
 Route::get('testimonies/{pages?}', [ApiController::class  ,  'testimonies']);
 Route::get('allpages/{pages?}', [ApiController::class  ,  'allpages']);
 Route::get('page/{id}', [ApiController::class  ,  'page']);

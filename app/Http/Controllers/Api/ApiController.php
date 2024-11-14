@@ -62,6 +62,25 @@ class ApiController extends Controller
     }
 
 
+    public function singleblogid($id){
+
+        try{ 
+        $service = servicess::find($id);
+    
+        if(isset($service->id)){
+            return response()->json( $service);
+
+        }    
+        return response()->json([ 'message'=>"blog can't be found"]);
+        
+
+        }catch(\Exception   $e){
+            return response()->json([ 'message'=>$e->getMessage()]);
+        }
+    }
+
+
+
     
     public function testimonies($pages =  null){
 
