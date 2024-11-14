@@ -18,7 +18,7 @@ class cor
          // In Laravel middleware or in the main API route file
          $response = $next($request);
          // Set CORS headers
-         $response->headers->set('Access-Control-Allow-Origin', 'https://tinkahealthservices.com');
+         $response->headers->set('Access-Control-Allow-Origin', '*');
          $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
          $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
  
