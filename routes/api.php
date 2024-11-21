@@ -31,4 +31,6 @@ Route::get('logo', [ApiController::class  ,  'logo']);
 Route::get('contact', [ApiController::class  ,  'contact']);
 Route::any('send_mail'   , [ApiController::class  ,  'sendmail'] );
 
+Route::any('general_mail'   , [ApiController::class  ,  'generalmail'] );
+
 });

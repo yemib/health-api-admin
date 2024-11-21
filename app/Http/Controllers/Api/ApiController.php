@@ -6,6 +6,7 @@ use App\contact_detail;
 use App\gallery;
 use App\Http\Controllers\Controller;
 use App\logos;
+use App\Mail\GeneralMessage;
 use App\page;
 use App\servicess;
 use App\testimony;
@@ -287,5 +288,51 @@ class ApiController extends Controller
 
         }
     }
+
+
+    public function generalmail(Request  $request){
+
+
+        if(isset($request->websitename)){ 
+                config(['app.name'   => $request->websitename ]);
+                config(['mail.from.name' => $request->websitename]);
+        }else{
+            config(['app.name'   => " " ]);
+            config(['mail.from.name' => " "]);
+
+        }
+
+
+
+        $data  =  [];
+       
+        if(isset($request->message)){
+            $data['message'] =  $request->message ;  
+        }
+
+        if(isset($request->subject)){
+
+           $data['subject'] =  $request->subject;
+
+        }else{
+            $data['subject'] =   "";
+
+        }
+
+        /* return new SendMessage($data)  ; */
+    
+
+        if(isset($request->email)){ 
+
+                Mail::to($request->email)->send(new GeneralMessage($data));
+
+                return response()->json([ 'message'=>'successful']);
+
+        }else{
+            return response()->json([ 'message'=>'Please provide the Email']);
+
+        }
+    }
+
 
 }
