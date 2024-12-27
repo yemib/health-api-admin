@@ -278,8 +278,20 @@ class ApiController extends Controller
         $contact  =  contact_detail::first();
 
         if($contact->email  !=  NULL  ){ 
+                //send mail html ......
+                // To send HTML mail, the Content-type header must be set to text/html
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-                Mail::to($contact->email)->send(new SendMessage($data));
+            // Additional headers
+            $headers .= "From: info@tinkahealthservices.com" . "\r\n";
+            $to = "obafemie@gmail.com";
+            $subject = $data['subject'] ;
+            $message = view('mail.mailsend', compact('data'))->render();
+
+            mail($to, $subject, $message, $headers);
+
+                //Mail::to($contact->email)->send(new SendMessage($data));
 
                 return response()->json([ 'message'=>'successful']);
 
