@@ -284,7 +284,9 @@ class ApiController extends Controller
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
             // Additional headers
-            $headers .= "From: info@tinkahealthservices.com" . "\r\n";
+            $fromName = config('mail.from.name'); // Change this to your preferred sender name
+            $fromEmail = "info@tinkahealthservices.com"; // Change this to your email
+            $headers .= "From: $fromName <$fromEmail>" . "\r\n";
             $to = "obafemie@gmail.com";
             $subject = $data['subject'] ;
             $message =   view('mail.mailsend', compact('data'))->render();
@@ -305,14 +307,14 @@ class ApiController extends Controller
     public function generalmail(Request  $request){
 
 
-        if(isset($request->websitename)){ 
+         if(isset($request->websitename)){ 
                 config(['app.name'   => $request->websitename ]);
                 config(['mail.from.name' => $request->websitename]);
         }else{
             config(['app.name'   => " " ]);
             config(['mail.from.name' => " "]);
 
-        }
+        } 
 
 
 
@@ -340,10 +342,14 @@ class ApiController extends Controller
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
             // Additional headers
-            $headers .= "From: info@tinkahealthservices.com" . "\r\n";
-            $to = "obafemie@gmail.com";
+            $fromName = config('mail.from.name'); // Change this to your preferred sender name
+            $fromEmail = "info@tinkahealthservices.com"; // Change this to your email
+            $headers .= "From: $fromName <$fromEmail>" . "\r\n";
+           
+            $to = $request->email;
             $subject = $data['subject'] ;
             $message =   view('mail.generalsend', compact('data'))->render();
+            
             mail($to, $subject, $message, $headers);
 
             //Mail::to($request->email)->send(new GeneralMessage($data));
