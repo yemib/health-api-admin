@@ -287,7 +287,7 @@ class ApiController extends Controller
             $headers .= "From: info@tinkahealthservices.com" . "\r\n";
             $to = "obafemie@gmail.com";
             $subject = $data['subject'] ;
-            $message = view('mail.mailsend', compact('data'))->render();
+            $message =   "testing" ;//view('mail.mailsend', compact('data'))->render();
 
             mail($to, $subject, $message, $headers);
 
