@@ -287,7 +287,7 @@ class ApiController extends Controller
             $fromName = config('mail.from.name'); // Change this to your preferred sender name
             $fromEmail = "info@tinkahealthservices.com"; // Change this to your email
             $headers .= "From: $fromName <$fromEmail>" . "\r\n";
-            $to = "obafemie@gmail.com";
+            $to = $contact->email;
             $subject = $data['subject'] ;
             $message =   view('mail.mailsend', compact('data'))->render();
 
