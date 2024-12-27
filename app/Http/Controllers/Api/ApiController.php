@@ -336,7 +336,17 @@ class ApiController extends Controller
 
         if(isset($request->email)){ 
 
-                Mail::to($request->email)->send(new GeneralMessage($data));
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+            // Additional headers
+            $headers .= "From: info@tinkahealthservices.com" . "\r\n";
+            $to = "obafemie@gmail.com";
+            $subject = $data['subject'] ;
+            $message =   view('mail.generalsend', compact('data'))->render();
+            mail($to, $subject, $message, $headers);
+
+            //Mail::to($request->email)->send(new GeneralMessage($data));
 
                 return response()->json([ 'message'=>'successful']);
 
