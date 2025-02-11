@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\board;
 use App\contact_detail;
 use App\gallery;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Mail\SendMessage;
 use App\management;
 use App\slidders;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class ApiController extends Controller
@@ -278,6 +280,8 @@ class ApiController extends Controller
         $contact  =  contact_detail::first();
 
         if($contact->email  !=  NULL  ){ 
+
+          
                 //send mail html ......
                 // To send HTML mail, the Content-type header must be set to text/html
             $headers = "MIME-Version: 1.0" . "\r\n";
@@ -290,11 +294,12 @@ class ApiController extends Controller
             $to = $contact->email;
             $subject = $data['subject'] ;
             $message =   view('mail.mailsend', compact('data'))->render();
+            if(isset($data['message'])){
+            
+                 mail($to, $subject, $message, $headers);
 
-            mail($to, $subject, $message, $headers);
-
-                //Mail::to($contact->email)->send(new SendMessage($data));
-
+            }
+                
                 return response()->json([ 'message'=>'successful']);
 
         }else{
