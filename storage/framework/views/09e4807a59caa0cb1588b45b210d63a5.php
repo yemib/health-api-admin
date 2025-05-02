@@ -1,134 +1,239 @@
- 
-         <?php $__env->startSection('content'); ?>
-
-         <?php
-use App\servicess;
-
-if(isset($edit)){
-
-
-
-}
-
-?>
+<?php $__env->startSection('content'); ?>
+    <?php
+    use App\servicess;
+    
+    if (isset($edit)) {
+    }
+    
+    ?>
 
 
-          <div class="col-md-9">
-            <!-- Website Overview -->
-            <div class="panel panel-default">
-              <div class="panel-heading main-color-bg">
+    <div class="col-md-9">
+        <!-- Website Overview -->
+        <div class="panel panel-default">
+            <div class="panel-heading main-color-bg">
                 <h3 class="panel-title">Add Blog</h3>
-              </div>
-              <div class="panel-body">
+            </div>
+            <div class="panel-body">
 
-               <a   class="btn btn-primary" href="/newsletters"> blog  List     </a>
-
-
-
-                <form    method="post" action="<?php if(isset($service)): ?> /newsletters/<?php echo e($service->id); ?>  <?php else: ?> /newsletters <?php endif; ?>"  enctype="multipart/form-data"   >
-
-                  <?php echo e(csrf_field()); ?>
+                <a class="btn btn-primary" href="/newsletters"> blog List </a>
 
 
-                  <div class="form-group">
-                    <label>Title</label>
-                    <input  required type="text" class="form-control" placeholder="Title" value="<?php if(isset($service)): ?> <?php echo e($service->title); ?> <?php endif; ?>"   name="title" >
-                  </div>
+
+                <form method="post"
+                    action="<?php if(isset($service)): ?> /newsletters/<?php echo e($service->id); ?>  <?php else: ?> /newsletters <?php endif; ?>"
+                    enctype="multipart/form-data"   id="blog_form">
+
+                    <?php echo e(csrf_field()); ?>
 
 
-                   <div class="form-group">
-                    <label>Body</label>
-                    <br/>
 
-                      <?php echo $__env->make('admin_folder/tools', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-
-                   <br/>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input required type="text" class="form-control" placeholder="Title"
+                            value="<?php if(isset($service)): ?> <?php echo e($service->title); ?> <?php endif; ?>" name="title">
+                    </div>
 
 
-                      <div  id="progress_id"> </div>
-
-
-                    <div   style="height: 300px ; overflow: auto;position: relative"  onDblClick="$('.tool_container').hide(500)"   onClick="$('.tool_container').show(500)" id="el"  contenteditable="true"     class="form-control  preview"> <?php if(isset($service)): ?> <?php echo $service->body; ?> <?php endif; ?> </div>
+                    <div class="form-group">
+                        <label>Body</label>
 
 
 
 
-                    <textarea style="display: none" id="tex" name="body" class="form-control" placeholder="Service Body"></textarea>
-                  </div>
+
+                        
+                        <div id="editor-container" style="height: 300px;"></div>
+
+                        <textarea style="display: none" id="tex" name="body" class="form-control" placeholder="Service Body"></textarea>
+
+
+                    </div>
+
+              
 
 
 
+                    <div class="form-group">
 
-                  <div class="form-group">
-
-                   <div   id="preview" <?php if(isset($service)): ?> style="background-image: url(<?php echo e($service->image); ?>); height: 200px"  <?php endif; ?> >       </div>
-
-
-                   <input  id="pre_input"     type="hidden"   name="image"    />
+                        <div id="preview"
+                            <?php if(isset($service)): ?> style="background-image: url(<?php echo e($service->image); ?>); height: 200px" <?php endif; ?>>
+                        </div>
 
 
-                    <label  class="btn btn-primary"  for="file-input">Upload Featured  Image</label>
+                        <input id="pre_input" type="hidden" name="image" />
+
+
+                        <label class="btn btn-primary" for="file-input">Upload Featured Image</label>
 
 
 
-                  <div class="checkbox">
+                        <div class="checkbox">
+
+                            <?php  if(isset($service)) { ?>
+
+                            <label>
+
+                                <input name="publish" value="yes" <?php if($service->publish == 'yes'): ?> checked <?php endif; ?>
+                                    type="checkbox"> Published
+                            </label>
+
+
+                            <?php   } else{   ?>
+
+                            <label><input name="publish" value="yes" type="checkbox" checked> Published</label>
+
+                            <?php   } ?>
+                        </div>
+
+
+                        <input type="file" style="display: none" id="file-input" name="picture">
+                    </div>
+
 
                     <?php  if(isset($service)) { ?>
 
-                    <label>
+                    <input type="hidden" name="_method" value="PUT" />
 
-                      <input  name="publish"   value="yes"  <?php if($service->publish  =='yes'): ?>  checked <?php endif; ?>  type="checkbox"> Published
-                    </label>
-
-
-                     <?php   } else{   ?>
-
-                    <label><input  name="publish"   value="yes"    type="checkbox" checked> Published</label>
-
-                    <?php   } ?>
-                  </div>
-
-                   <input       type="file"   style="display: none"   id="file-input"   name="picture" >
-                  </div>
-
-
-                       <?php  if(isset($service)) { ?>
-
-                              <input    type="hidden"     name="_method"   value="PUT"/>
-
-	<input   onClick="acceptm('el' , 'tex');acceptm('topic_div' , 'topic_text')"  onMouseOver="acceptm('el' , 'tex');acceptm('topic_div' , 'topic_text')"  class="btn btn-success"  type="Submit"  value="Update"  />
+                    <input onClick="acceptm('el' , 'tex');acceptm('topic_div' , 'topic_text')"
+                        onMouseOver="acceptm('el' , 'tex');acceptm('topic_div' , 'topic_text')" class="btn btn-success"
+                        type="Submit" value="Update" />
 
 
 
 
-                       <?php  }else{    ?>
+                    <?php  }else{    ?>
 
-                	<input   onClick="acceptm('el' , 'tex');acceptm('topic_div' , 'topic_text')"  onMouseOver="acceptm('el' , 'tex');acceptm('topic_div' , 'topic_text')"  class="btn btn-success"  type="Submit"  value="Submit"  />
-
-
-
-
-                  <input type="reset" class="btn btn-danger" value="Reset"    onClick="$('#preview').hide()">
+                    <input onClick="acceptm('el' , 'tex');acceptm('topic_div' , 'topic_text')"
+                        onMouseOver="acceptm('el' , 'tex');acceptm('topic_div' , 'topic_text')" class="btn btn-success"
+                        type="Submit" value="Submit" />
 
 
 
 
-                  <?php    } ?>
+                    <input type="reset" class="btn btn-danger" value="Reset" onClick="$('#preview').hide()">
+
+
+
+
+                    <?php    } ?>
 
                 </form>
-                    <form  id="form_id"   enctype="multipart/form-data">
-                      <?php echo e(csrf_field()); ?>
+                <form id="form_id" enctype="multipart/form-data">
+                    <?php echo e(csrf_field()); ?>
 
 
-                   <input     name="others"    type="file"   style="display: none"    id="file-article"    class="file-article" >
+                    <input name="others" type="file" style="display: none" id="file-article" class="file-article">
 
-				  </form>
-              </div>
-              </div>
+                </form>
+            </div>
+        </div>
 
-          </div>
-       <?php $__env->stopSection(); ?>
+    </div>
+<?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('script'); ?>
+    <script>
+   var quill = new Quill('#editor-container', {
+       theme: 'snow',
+       modules: {
+          toolbar: [
+             [{
+                'header': [1, 2, 3, 4, 5, 6, false]
+             }],
+             ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+             ['blockquote', 'code-block'],
+
+             [{
+                'list': 'ordered'
+             }, {
+                'list': 'bullet'
+             }],
+             [{
+                'script': 'sub'
+             }, {
+                'script': 'super'
+             }], // superscript/subscript
+             [{
+                'indent': '-1'
+             }, {
+                'indent': '+1'
+             }], // outdent/indent
+             [{
+                'direction': 'rtl'
+             }], // text direction
+
+             [{
+                'size': ['small', false, 'large', 'huge']
+             }], // custom dropdown
+             [{
+                'header': [1, 2, 3, 4, 5, 6, false]
+             }],
+
+             [{
+                'color': []
+             }, {
+                'background': []
+             }], // dropdown with defaults from theme
+             [{
+                'font': []
+             }],
+             [{
+                'align': []
+             }],
+
+             ['clean'], // remove formatting button
+
+             ['link', 'image', 'video'], // link, image, video
+             ['audio'], // custom button for audio
+             ['document'], // custom button for document
+             ['youtube'] 
+          ],
+          imageResize: {
+             modules: ['Resize', 'DisplaySize', 'Toolbar']
+          }
+       }
+   });
+
+   // Add image upload functionality
+   var toolbar = quill.getModule('toolbar');
+   toolbar.addHandler('image', function() {
+       var input = document.createElement('input');
+       input.setAttribute('type', 'file');
+       input.setAttribute('accept', 'image/*');
+       input.click();
+
+       input.onchange = function() {
+           var file = input.files[0];
+           if (file) {
+               var reader = new FileReader();
+               reader.onload = function(e) {
+                   var range = quill.getSelection();
+                   quill.insertEmbed(range.index, 'image', e.target.result);
+               };
+               reader.readAsDataURL(file);
+           }
+       };
+   });
+
+     /*         // Add a table when button is clicked
+       document.getElementById('add-table').addEventListener('click', () => {
+           let table = quill.getModule('better-table').insertTable(3, 3);
+       }); */
+
+        // Sync Quill content with textarea
+        var form = document.querySelector('#blog_form');
+
+        form.onsubmit = function() {
+            var body = document.querySelector('textarea[name=body]');
+            body.value = quill.root.innerHTML;
+        };
+
+        // If there's existing content, load it into Quill
+        <?php if(isset($service)): ?>
+            quill.root.innerHTML = <?php echo json_encode($service->body, 15, 512) ?>;
+        <?php endif; ?>
+    </script>
+<?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin_folder/index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\website\health\health-api-admin\resources\views/admin_folder/add_services.blade.php ENDPATH**/ ?>

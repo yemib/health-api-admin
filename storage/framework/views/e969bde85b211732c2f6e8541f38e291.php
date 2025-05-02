@@ -174,17 +174,20 @@
   <?php echo $__env->make('script', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <script src="<?php echo e(asset('admin/bootstrap.min.js')); ?>"></script>
 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <style>
-      .preview{
-        position: relative  !important;
-        
+      .preview {
+          position: relative !important;
+
       }
-      .editable_object{
-        position: absolute;
-        width: 60%; /* initial size */
-        height: auto;
-        cursor: move;
-       
+
+      .editable_object {
+          position: absolute;
+          width: 60%;
+          /* initial size */
+          height: auto;
+          cursor: move;
+
       }
 
       .resize-handle {
@@ -195,9 +198,17 @@
           bottom: 0;
           right: 0;
           cursor: nwse-resize;
-       }
+      }
+  </style>
 
-    </style>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- Quill Better Table -->
+<script src="https://cdn.jsdelivr.net/npm/quill-better-table@1.2.10/dist/quill-better-table.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
+
+<?php echo $__env->yieldContent('script'); ?>
+</body>
+
   </body>
 </html>
 <?php /**PATH C:\website\health\health-api-admin\resources\views/admin_folder/index.blade.php ENDPATH**/ ?>
