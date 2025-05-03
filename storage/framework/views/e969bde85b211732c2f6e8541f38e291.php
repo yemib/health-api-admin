@@ -163,14 +163,11 @@
     <!-- Add Page -->
   
 
-  <script>
-     CKEDITOR.replace( 'body' );
- </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<?php echo e(asset('admin/jquery.min.js')); ?>"></script>
+   
   <?php echo $__env->make('script', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <script src="<?php echo e(asset('admin/bootstrap.min.js')); ?>"></script>
 

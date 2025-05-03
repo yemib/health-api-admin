@@ -38,10 +38,6 @@
                     <div class="form-group">
                         <label>Body</label>
 
-
-
-
-
                         {{-- <button type="button" id="add-table">Insert Table</button> --}}
                         <div id="editor-container" style="height: 300px;"></div>
 
@@ -184,8 +180,8 @@
                     ['clean'], // remove formatting button
 
                     ['link', 'image', 'video'], // link, image, video
-                   /*  ['audio'], // custom button for audio
-                    ['document'], // custom button for document */
+                    ['audio'], // custom button for audio
+                    ['document'], // custom button for document
 
                 ],
                 imageResize: {

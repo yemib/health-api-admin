@@ -163,14 +163,14 @@
     <!-- Add Page -->
   
 
-  <script>
+{{--   <script>
      CKEDITOR.replace( 'body' );
  </script>
-
+ --}}
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{asset('admin/jquery.min.js')}}"></script>
+   {{--  <script src="{{asset('admin/jquery.min.js')}}"></script> --}}
   @include('script')
     <script src="{{asset('admin/bootstrap.min.js')}}"></script>
 
