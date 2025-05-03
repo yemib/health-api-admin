@@ -170,11 +170,11 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-   {{--  <script src="{{asset('admin/jquery.min.js')}}"></script> --}}
+     <script src="{{asset('admin/jquery.min.js')}}"></script> 
   @include('script')
     <script src="{{asset('admin/bootstrap.min.js')}}"></script>
 
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+   {{--  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> --}}
     <style>
       .preview {
           position: relative !important;
