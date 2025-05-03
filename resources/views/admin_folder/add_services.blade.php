@@ -186,7 +186,7 @@
              ['link', 'image', 'video'], // link, image, video
              ['audio'], // custom button for audio
              ['document'], // custom button for document
-             ['youtube'] 
+          
           ],
           imageResize: {
              modules: ['Resize', 'DisplaySize', 'Toolbar']
