@@ -129,61 +129,33 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('script'); ?>
-    <script>
-        var quill = new Quill('#editor-container', {
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const editorContainer = document.getElementById('editor-container');
+
+        if (!editorContainer) {
+            console.error("Editor container not found.");
+            return;
+        }
+
+        const quill = new Quill('#editor-container', {
             theme: 'snow',
             modules: {
                 toolbar: [
-                    [{
-                        'header': [1, 2, 3, 4, 5, 6, false]
-                    }],
-                    ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
                     ['blockquote', 'code-block'],
-
-                    [{
-                        'list': 'ordered'
-                    }, {
-                        'list': 'bullet'
-                    }],
-                    [{
-                        'script': 'sub'
-                    }, {
-                        'script': 'super'
-                    }], // superscript/subscript
-                    [{
-                        'indent': '-1'
-                    }, {
-                        'indent': '+1'
-                    }], // outdent/indent
-                    [{
-                        'direction': 'rtl'
-                    }], // text direction
-
-                    [{
-                        'size': ['small', false, 'large', 'huge']
-                    }], // custom dropdown
-                    [{
-                        'header': [1, 2, 3, 4, 5, 6, false]
-                    }],
-
-                    [{
-                        'color': []
-                    }, {
-                        'background': []
-                    }], // dropdown with defaults from theme
-                    [{
-                        'font': []
-                    }],
-                    [{
-                        'align': []
-                    }],
-
-                    ['clean'], // remove formatting button
-
-                    ['link', 'image', 'video'], // link, image, video
-                    ['audio'], // custom button for audio
-                    ['document'], // custom button for document
-
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    [{ 'script': 'sub' }, { 'script': 'super' }],
+                    [{ 'indent': '-1' }, { 'indent': '+1' }],
+                    [{ 'direction': 'rtl' }],
+                    [{ 'size': ['small', false, 'large', 'huge'] }],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'font': [] }],
+                    [{ 'align': [] }],
+                    ['clean'],
+                    ['link', 'image', 'video']
+                    // Removed 'audio' and 'document' to avoid warnings
                 ],
                 imageResize: {
                     modules: ['Resize', 'DisplaySize', 'Toolbar']
@@ -191,20 +163,20 @@
             }
         });
 
-        // Add image upload functionality
-        var toolbar = quill.getModule('toolbar');
-        toolbar.addHandler('image', function() {
-            var input = document.createElement('input');
+        // Image upload handler
+        const toolbar = quill.getModule('toolbar');
+        toolbar.addHandler('image', function () {
+            const input = document.createElement('input');
             input.setAttribute('type', 'file');
             input.setAttribute('accept', 'image/*');
             input.click();
 
-            input.onchange = function() {
-                var file = input.files[0];
+            input.onchange = function () {
+                const file = input.files[0];
                 if (file) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        var range = quill.getSelection();
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const range = quill.getSelection(true);
                         quill.insertEmbed(range.index, 'image', e.target.result);
                     };
                     reader.readAsDataURL(file);
@@ -212,24 +184,20 @@
             };
         });
 
-        /*         // Add a table when button is clicked
-          document.getElementById('add-table').addEventListener('click', () => {
-              let table = quill.getModule('better-table').insertTable(3, 3);
-          }); */
-
-        // Sync Quill content with textarea
-        var form = document.querySelector('#blog_form');
-
-        form.onsubmit = function() {
-            var body = document.querySelector('textarea[name=body]');
+        // Submit handler: sync Quill content with textarea
+        const form = document.querySelector('#blog_form');
+        form.addEventListener('submit', function () {
+            const body = document.querySelector('textarea[name=body]');
             body.value = quill.root.innerHTML;
-        };
+        });
 
-        // If there's existing content, load it into Quill
+        // If editing, set initial content
         <?php if(isset($service)): ?>
             quill.root.innerHTML = <?php echo json_encode($service->body, 15, 512) ?>;
         <?php endif; ?>
-    </script>
+    });
+</script>
 <?php $__env->stopSection(); ?>
+
 
 <?php echo $__env->make('admin_folder/index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\website\health\health-api-admin\resources\views/admin_folder/add_services.blade.php ENDPATH**/ ?>
