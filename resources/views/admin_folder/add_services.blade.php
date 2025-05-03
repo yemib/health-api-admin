@@ -156,9 +156,9 @@
                     ['link', 'image', 'video']
                     // Removed 'audio' and 'document' to avoid warnings
                 ],
-                imageResize: {
+              /*   imageResize: {
                     modules: ['Resize', 'DisplaySize', 'Toolbar']
-                }
+                } */
             }
         });
 
