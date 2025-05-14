@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\admins;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\databaseController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -107,6 +108,7 @@ Route::get('/admins',  function () {
 	return  view('admin_folder/home');
 })->middleware('article');
 
+Route::any('/upload-image', [UploadController::class, 'uploadImage'])->name('ckeditor.upload');
 
 
 Route::post('/large_file',  function (Request $request) {
