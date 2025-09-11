@@ -164,7 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 	
-       // ckeditor\ckeditor\ServiceProvider::class,
+    
 
         /*
          * Package Service Providers...

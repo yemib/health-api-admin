@@ -19,7 +19,7 @@ use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 
-
+//Route::any('send_mail'   , [ApiController::class  ,  'sendmail'] );
 Route::get('database' ,  [databaseController::class  ,  'index']);
 
 Route::get('/',  function () {
