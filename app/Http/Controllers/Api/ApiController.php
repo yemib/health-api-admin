@@ -23,267 +23,228 @@ class ApiController extends Controller
     //
     private $pages_constant;
 
-    public function __construct() {
-         $this->pages_constant =   20;
+    public function __construct()
+    {
+        $this->pages_constant =   20;
     }
 
-    public function blog($pages =  null){
+    public function blog($pages =  null)
+    {
 
-        if($pages){
+        if ($pages) {
 
-            $page_no  =  $pages ;
-        }else{
+            $page_no  =  $pages;
+        } else {
             $page_no  =   $this->pages_constant;
-            
         }
-        try{ 
-        $service = servicess::where('publish' ,  'yes')->orderby('created_at'  , 'desc')->paginate( $page_no);
-    
+        try {
+            $service = servicess::where('publish',  'yes')->orderby('created_at', 'desc')->paginate($page_no);
 
-        return response()->json( $service);
 
-        }catch(\Exception   $e){
-            return response()->json([ 'message'=>$e->getMessage()]);
+            return response()->json($service);
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
         }
     }
 
-    public function singleblog($slug){
+    public function singleblog($slug)
+    {
 
-        try{ 
-        $service = servicess::where('slug' ,$slug )->first();
-    
-        if(isset($service->id)){
-            return response()->json( $service);
+        try {
+            $service = servicess::where('slug', $slug)->first();
 
-        }    
-        return response()->json([ 'message'=>"blog can't be found"]);
-        
-
-        }catch(\Exception   $e){
-            return response()->json([ 'message'=>$e->getMessage()]);
+            if (isset($service->id)) {
+                return response()->json($service);
+            }
+            return response()->json(['message' => "blog can't be found"]);
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
         }
     }
 
 
-    public function singleblogid($id){
+    public function singleblogid($id)
+    {
 
-        try{ 
-        $service = servicess::find($id);
-    
-        if(isset($service->id)){
-            return response()->json( $service);
+        try {
+            $service = servicess::find($id);
 
-        }    
-        return response()->json([ 'message'=>"blog can't be found"]);
-        
-
-        }catch(\Exception   $e){
-            return response()->json([ 'message'=>$e->getMessage()]);
+            if (isset($service->id)) {
+                return response()->json($service);
+            }
+            return response()->json(['message' => "blog can't be found"]);
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
         }
     }
 
 
 
-    
-    public function testimonies($pages =  null){
 
-        if($pages){
+    public function testimonies($pages =  null)
+    {
 
-            $page_no  =  $pages ;
-        }else{
+        if ($pages) {
+
+            $page_no  =  $pages;
+        } else {
             $page_no  =    $this->pages_constant;
-            
         }
-        try{ 
-        $service = testimony::where('publish' ,  'yes')->orderby('created_at'  , 'desc')->paginate( $page_no);
-    
+        try {
+            $service = testimony::where('publish',  'yes')->orderby('created_at', 'desc')->paginate($page_no);
 
-        return response()->json( $service);
 
-        }catch(\Exception   $e){
-            return response()->json([ 'message'=>$e->getMessage()]);
+            return response()->json($service);
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
         }
     }
 
-        
-    public function managements($pages =  null){
 
-        if($pages){
+    public function managements($pages =  null)
+    {
 
-            $page_no  =  $pages ;
-        }else{
+        if ($pages) {
+
+            $page_no  =  $pages;
+        } else {
 
             $page_no  =    $this->pages_constant;
-            
         }
-        try{ 
-        $service = management::orderby('created_at'  , 'desc')->paginate( $page_no);
-    
-        return response()->json( $service);
+        try {
+            $service = management::orderby('created_at', 'desc')->paginate($page_no);
 
-        }catch(\Exception   $e){
-            return response()->json([ 'message'=>$e->getMessage()]);
+            return response()->json($service);
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
         }
     }
-    public function gallery($pages =  null){
+    public function gallery($pages =  null)
+    {
 
-        if($pages){
+        if ($pages) {
 
-            $page_no  =  $pages ;
-        }else{
+            $page_no  =  $pages;
+        } else {
 
             $page_no  =    $this->pages_constant;
-            
         }
-        try{ 
-        $service = gallery::orderby('created_at'  , 'desc')->paginate( $page_no);
-    
-        return response()->json( $service);
+        try {
+            $service = gallery::orderby('created_at', 'desc')->paginate($page_no);
 
-        }catch(\Exception   $e){
-            return response()->json([ 'message'=>$e->getMessage()]);
+            return response()->json($service);
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
         }
     }
 
-    public function slides($pages =  null){
+    public function slides($pages =  null)
+    {
 
-        if($pages){
+        if ($pages) {
 
-            $page_no  =  $pages ;
-        }else{
+            $page_no  =  $pages;
+        } else {
 
             $page_no  =    $this->pages_constant;
-            
         }
-        try{ 
-        $service = slidders::orderby('created_at'  , 'desc')->paginate( $page_no);
-    
-        return response()->json( $service);
+        try {
+            $service = slidders::orderby('created_at', 'desc')->paginate($page_no);
 
-        }catch(\Exception   $e){
-            return response()->json([ 'message'=>$e->getMessage()]);
+            return response()->json($service);
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
         }
     }
 
-    public function logo(){
+    public function logo()
+    {
 
-      
-        try{ 
-        $service = logos::first();
-    
-        return response()->json( $service);
 
-        }catch(\Exception   $e){
-            return response()->json([ 'message'=>$e->getMessage()]);
-        }
-    }
+        try {
+            $service = logos::first();
 
-    
-    public function contact(){
-
-      
-        try{ 
-        $service = contact_detail::first();
-    
-        return response()->json( $service);
-
-        }catch(\Exception   $e){
-            return response()->json([ 'message'=>$e->getMessage()]);
+            return response()->json($service);
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
         }
     }
 
 
+    public function contact()
+    {
 
-    
 
-    public function allpages($pages =  null){
+        try {
+            $service = contact_detail::first();
 
-        if($pages){
-
-            $page_no  =  $pages ;
-        }else{
-            $page_no  =    $this->pages_constant ;
-            
-        }
-        try{ 
-        $service = page::where('publish' ,  'yes')->orderby('created_at'  , 'desc')->paginate( $page_no);
-    
-
-        return response()->json( $service);
-
-        }catch(\Exception   $e){
-            return response()->json([ 'message'=>$e->getMessage()]);
+            return response()->json($service);
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
         }
     }
 
-    public function  page($id){
 
-        try{ 
+
+
+
+    public function allpages($pages =  null)
+    {
+
+        if ($pages) {
+
+            $page_no  =  $pages;
+        } else {
+            $page_no  =    $this->pages_constant;
+        }
+        try {
+            $service = page::where('publish',  'yes')->orderby('created_at', 'desc')->paginate($page_no);
+
+
+            return response()->json($service);
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
+        }
+    }
+
+    public function  page($id)
+    {
+
+        try {
             $service = page::find($id);
 
-            if(isset($service->id)){
-                return response()->json( $service);
-    
-            }else{
-                return response()->json([ 'message'=>"No page is found"]);
-
+            if (isset($service->id)) {
+                return response()->json($service);
+            } else {
+                return response()->json(['message' => "No page is found"]);
             }
-        
-           
-            }catch(\Exception   $e){
-                return response()->json([ 'message'=>$e->getMessage()]);
-            }
+        } catch (\Exception   $e) {
+            return response()->json(['message' => $e->getMessage()]);
+        }
     }
 
 
-    public function sendmail(Request  $request){
+    public function sendmail(Request  $request)
+    {
 
         $data  =  [];
-        if(isset($request->name)){
-            $data['name'] =  $request->name  ;  
-        }
 
-        if(isset($request->phone)){
-            $data['phone'] =  $request->phone ;  
-        }
-
-        if(isset($request->email)){
-            $data['email'] =  $request->email ;  
-        }
-
-        if(isset($request->therapy)){
-            $data['therapy'] =  $request->therapy ;  
-        }
-        if(isset($request->challenges)){
-            $data['challenges'] =  $request->challenges ;  
-        }       
-        if(isset($request->experience)){
-            $data['experience'] =  $request->experience ;  
-        }
-
-        if(isset($request->message)){
-            $data['message'] =  $request->message ;  
-        }
-
-        if(isset($request->date1)){
-            $data['date1'] =  $request->date1 ;  
-        }
-        if(isset($request->date2)){
-            $data['date2'] =  $request->date2 ;  
-        }
-        
+        // Collect POST data
+        $data = $_REQUEST;
 
 
         $data['subject'] =  "Appointment";
+        foreach ($data as $key => $value) {
+            $data[$key] = $value;
+        }
+
 
         /* return new SendMessage($data)  ; */
         $contact  =  contact_detail::first();
+        if ($contact->email  !=  NULL) {
 
-        if($contact->email  !=  NULL  ){ 
-
-          
-                //send mail html ......
-                // To send HTML mail, the Content-type header must be set to text/html
+            //send mail html ......
+            // To send HTML mail, the Content-type header must be set to text/html
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
@@ -292,56 +253,51 @@ class ApiController extends Controller
             $fromEmail = "info@tinkahealthservices.com"; // Change this to your email
             $headers .= "From: $fromName <$fromEmail>" . "\r\n";
             $to = $contact->email;
-            $subject = $data['subject'] ;
+            $subject = $data['subject'];
             $message =   view('mail.mailsend', compact('data'))->render();
-            if(isset($data['message'])){
-            
-                 mail($to, $subject, $message, $headers);
+            if (isset($data['message'])) {
 
+                mail($to, $subject, $message, $headers);
             }
-                
-                return response()->json([ 'message'=>'successful']);
 
-        }else{
-            return response()->json([ 'message'=>'Please provide the contact email in admin']);
-
+            return response()->json(['message' => 'successful']);
+        } else {
+            return response()->json(['message' => 'Please provide the contact email in admin']);
         }
     }
 
 
-    public function generalmail(Request  $request){
+    public function generalmail(Request  $request)
+    {
 
 
-         if(isset($request->websitename)){ 
-                config(['app.name'   => $request->websitename ]);
-                config(['mail.from.name' => $request->websitename]);
-        }else{
-            config(['app.name'   => " " ]);
+        if (isset($request->websitename)) {
+            config(['app.name'   => $request->websitename]);
+            config(['mail.from.name' => $request->websitename]);
+        } else {
+            config(['app.name'   => " "]);
             config(['mail.from.name' => " "]);
-
-        } 
+        }
 
 
 
         $data  =  [];
-       
-        if(isset($request->message)){
-            $data['message'] =  $request->message ;  
+
+        if (isset($request->message)) {
+            $data['message'] =  $request->message;
         }
 
-        if(isset($request->subject)){
+        if (isset($request->subject)) {
 
-           $data['subject'] =  $request->subject;
-
-        }else{
+            $data['subject'] =  $request->subject;
+        } else {
             $data['subject'] =   "";
-
         }
 
         /* return new SendMessage($data)  ; */
-    
 
-        if(isset($request->email)){ 
+
+        if (isset($request->email)) {
 
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -350,22 +306,18 @@ class ApiController extends Controller
             $fromName = config('mail.from.name'); // Change this to your preferred sender name
             $fromEmail = "info@tinkahealthservices.com"; // Change this to your email
             $headers .= "From: $fromName <$fromEmail>" . "\r\n";
-           
+
             $to = $request->email;
-            $subject = $data['subject'] ;
+            $subject = $data['subject'];
             $message =   view('mail.generalsend', compact('data'))->render();
-            
+
             mail($to, $subject, $message, $headers);
 
             //Mail::to($request->email)->send(new GeneralMessage($data));
 
-                return response()->json([ 'message'=>'successful']);
-
-        }else{
-            return response()->json([ 'message'=>'Please provide the Email']);
-
+            return response()->json(['message' => 'successful']);
+        } else {
+            return response()->json(['message' => 'Please provide the Email']);
         }
     }
-
-
 }

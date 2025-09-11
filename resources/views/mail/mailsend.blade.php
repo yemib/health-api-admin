@@ -57,32 +57,10 @@
         <div class="email-content">
             <h1>Therapy Inquiry</h1>
             <p>
-                <strong>Name:</strong><br>
-                <?php if (isset($data['name'])) { echo htmlspecialchars($data['name']); } ?><br>
-                
-                <strong>Phone Number:</strong><br>
-                <?php if (isset($data['phone'])) { echo htmlspecialchars($data['phone']); } ?><br>
-                
-                <strong>Email:</strong><br>
-                <?php if (isset($data['email'])) { echo htmlspecialchars($data['email']); } ?><br>
-                
-                <strong>What brings you to seek therapy at this time?</strong><br>
-                <?php if (isset($data['therapy'])) { echo htmlspecialchars($data['therapy']); } ?><br>
-                
-                <strong>How long have you been experiencing these challenges?</strong><br>
-                <?php if (isset($data['challenges'])) { echo htmlspecialchars($data['challenges']); } ?><br>
-                
-                <strong>Have you had any prior experience with therapy?</strong><br>
-                <?php if (isset($data['experience'])) { echo htmlspecialchars($data['experience']); } ?><br>
-                
-                <strong>Convenient Dates:</strong><br>
-                <?php if (isset($data['date1'])) { echo htmlspecialchars($data['date1']); } ?><br>
-                <?php if (isset($data['date2'])) { echo htmlspecialchars($data['date2']); } ?><br>
-            </p>
-            <hr>
-            <p>
-                <?php if (isset($data['message'])) { echo $data['message']; } ?>
-            </p>
+                @foreach($data as $key => $value)
+                    <strong>{{ ucfirst(str_replace('_', ' ', $key)) }}:</strong> {{ $value }}<br>
+                @endforeach
+            </p>   
             <div class="footer">
                 <p>&copy; {{ date('Y') }} {{ config('app.name')  }}. All rights reserved.</p>
             </div>
